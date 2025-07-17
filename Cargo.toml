@@ -1,0 +1,81 @@
+[package]
+name = "kitty-plus"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jordan Diaz <jordandiazdiaz@users.noreply.github.com>"]
+description = "A modern, GPU-accelerated terminal emulator with AI features"
+license = "MIT"
+repository = "https://github.com/jordandiazdiaz/kitty-plus"
+homepage = "https://github.com/jordandiazdiaz/kitty-plus"
+keywords = ["terminal", "emulator", "gpu", "ai", "cross-platform"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+# Core
+tokio = { version = "1.40", features = ["full"] }
+crossterm = "0.28"
+ratatui = "0.29"
+
+# GPU Rendering
+wgpu = "0.20"
+winit = "0.30"
+pixels = "0.14"
+
+# Terminal emulation
+vte = "0.13"
+unicode-width = "0.1"
+unicode-segmentation = "1.12"
+
+# Configuration
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# UI
+egui = "0.29"
+egui-wgpu = "0.29"
+egui-winit = "0.29"
+
+# Utilities
+anyhow = "1.0"
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.11"
+directories = "5.0"
+
+# AI Features (optional)
+reqwest = { version = "0.12", features = ["json"], optional = true }
+
+# Plugin system
+wasmtime = { version = "25.0", optional = true }
+
+# Platform-specific dependencies
+[target.'cfg(target_os = "linux")'.dependencies]
+x11 = "2.21"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+cocoa = "0.25"
+objc = "0.2"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+winapi = { version = "0.3", features = ["winuser", "consoleapi"] }
+
+[features]
+default = ["ai", "plugins"]
+ai = ["dep:reqwest"]
+plugins = ["dep:wasmtime"]
+
+[[bin]]
+name = "kitty-plus"
+path = "src/main.rs"
+
+# Optimize for release builds
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]

@@ -1,0 +1,47 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Build artifacts
+/dist/
+/build/
+/packaging/*/
+*.deb
+*.rpm
+*.pkg
+*.dmg
+*.msi
+*.exe
+*.zip
+*.tar.gz
+*.AppImage
+
+# Config files (user-specific)
+config.toml
+*.local
+
+# Generated files
+*.generated.*
+*.temp
+*.tmp
