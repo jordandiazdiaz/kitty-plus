@@ -2,7 +2,7 @@
 name = "kitty-plus"
 version = "0.1.0"
 edition = "2021"
-authors = ["Jordan Diaz <jordandiazdiaz@users.noreply.github.com>"]
+authors = ["Jordan Diaz <jordandiazdiaz2019@gmail.com>"]
 description = "A modern, GPU-accelerated terminal emulator with AI features"
 license = "MIT"
 repository = "https://github.com/jordandiazdiaz/kitty-plus"
